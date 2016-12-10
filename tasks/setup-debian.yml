@@ -1,0 +1,10 @@
+---
+- name: template consol labs apt repository
+  template: src=consol-labs.apt-repo.j2 dest=/etc/apt/sources.list.d/labs-consol-stable.list
+
+- name: import consol labs rpm key
+  apt_key: keyserver=keys.gnupg.net id=F8C1CA08A57B9ED7
+
+- name: install omdistro and related packages
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items: "{{ omdistro_pkgs }}"

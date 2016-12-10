@@ -1,6 +1,7 @@
 ---
 omdistro_use_ssl: no
 omdistro_use_inventory: yes
+omdistro_inventory_group: all
 omdistro_notification_logging: 1
 #
 # SNMP related
@@ -8,6 +9,7 @@ omdistro_no_snmpbulk_tag: nobulk
 omdistro_snmp_default_community: public
 omdistro_snmp_check_interval: [ ]
 omdistro_snmp_communities: [ ]
+omdistro_check_parameters: [ ]
 #
 omdistro_scan_parents: no
 omdistro_site: local
@@ -19,6 +21,7 @@ omdistro_version: "1.30"
 omdistro_thruk_conf: [ ]
 omdistro_contacts: []
 omdistro_contactgroups: []
+omdistro_custom_mainmk: []
 omdistro_extra_host_conf:
     max_check_attempts:
         - '"3", ALL_HOSTS'
@@ -85,7 +88,7 @@ omdistro_timeperiods:
         - thursday  06:00-22:00
         - friday    06:00-22:00
         - saturday  06:00-22:00
-    none: [ ]
+    none: []
 #
 # for wato contacts.mk
 omdistro_contact_host_notification_options: [ d, u, r, f, s ]
@@ -95,10 +98,10 @@ omdistro_contact_notification_period: 24x7
 omdistro_contact_notifications_enabled: no
 #
 # for multisite wato users.mk
-omdistro_multisite_connector: ldap
+omdistro_multisite_connector: default
 omdistro_multisite_user_locked: no
 omdistro_multisite_user_force_authuser: no
-omdistro_multisite_user_force_authuser_webservice: no
+omdistro_multisite_user_force_authuser_webservice: yes
 omdistro_multisite_user_roles:
   - user
 #
@@ -140,3 +143,6 @@ netmon:
         extended:
             name: Extended
             descr: Extended hours, 7 days a week
+        none:
+            name: None
+            descr: No Time Is a Good Time

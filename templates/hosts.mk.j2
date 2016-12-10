@@ -4,8 +4,8 @@
 all_hosts = [
 {% if omdistro_use_inventory %}
 # ansible inventory
-{% for host in groups['all'] %}
-{%     set grps = ['snmp', 'tcp'] %}
+{% for host in groups[omdistro_inventory_group] %}
+{%     set grps = ['ping', 'tcp'] %}
 {%     for grp in group_names %}
 {%         if grp in omdistro_hostgroups %}
 {%             do grps.append(grp) %}
@@ -18,7 +18,7 @@ all_hosts = [
 # netmon inventory
 # check_mk can only 'discover' ipv4
 {% for host in netmon.devices %}
-    "{{ host.name }}|{{ host.groups|join('|') }}",
+  "{{host.name}}|{{ host.groups | default([]) | join('|') }}",
 {% endfor %}
 ]
 

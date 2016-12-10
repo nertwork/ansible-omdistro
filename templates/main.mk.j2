@@ -91,8 +91,8 @@ ignored_checktypes = [
 
 # Skip monitoring of the following services
 ignored_services = [
-{% for tag, filter in omdistro_ignored_services.iteritems() %}
-    ( [ "{{tag}}" ], ALL_HOSTS, [ "{{filter}}" ] ),
+{% for value in omdistro_ignored_services %}
+    ( {{ value }} ),
 {% endfor %}
 ]
 
@@ -106,10 +106,37 @@ extra_host_conf["{{ param }}"] = [
 {% endfor %}
 
 # Define extra service configuration parameters
-{% for param in omdistro_extra_service_conf %}
-extra_service_conf["{{ param }}"] = [
-{%     for value in omdistro_extra_service_conf[param] %}
-    ( {{ value }} )
+{% for param, values in omdistro_extra_service_conf.iteritems() %}
+extra_service_conf['{{ param }}'] = [
+{%     for value in values %}
+    ( {{ value }} ),
 {%     endfor %}
 ]
+
+{% endfor %}
+
+# Define datasource configuration parameters
+{% for value in omdistro_datasource_programs %}
+datasource_programs = [
+    ( {{ value }} ),
+]
+{% endfor %}
+
+# Define host check commands
+{% for value in omdistro_host_check_commands %}
+host_check_commands += [
+    ( {{ value }} ),
+]
+{% endfor %}
+
+# Define dyndns hosts
+{% for value in omdistro_dyndns_hosts %}
+dyndns_hosts = [
+    ( {{ value }} ),
+]
+{% endfor %}
+
+# Define additonal customizations
+{% for value in omdistro_custom_mainmk %}
+{{ value }}
 {% endfor %}

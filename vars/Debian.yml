@@ -1,0 +1,20 @@
+---
+omdistro_pkgs:
+    - libapache2-mod-python
+    - libapache2-mod-php5
+    - php5-sqlite
+    - php5-mcrypt
+    - libgd2-xpm-dev
+    - libdbi-dev
+    - libapache2-mod-proxy-html
+    - snmp
+    - rsyslog
+    - snmptt
+    - omd
+#
+omdistro_apache_documentroot_default: "/var/www/html"
+omdistro_apache_serveradmin_default: "root@localhost"
+omdistro_apache_errorlog_default: "logs/error_log"
+omdistro_apache_transferlog_default: "logs/access_log"
+omdistro_apache_confdir_default: "/etc/apache2/conf.d"
+omdistro_apache_svc_name: apache2
