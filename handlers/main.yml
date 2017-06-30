@@ -14,7 +14,7 @@
   service: name={{ omdistro_apache_svc_name }} state=restarted
 
 - name: restart omd
-  service: name=omd state=restarted
+  service: name=omd-{{ omdistro_version }} state=restarted
 
 - name: restart rsyslog
   service: name=rsyslog state=restarted

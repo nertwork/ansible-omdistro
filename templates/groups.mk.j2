@@ -33,6 +33,7 @@ service_groups = [
 
 # CONTACTGROUPS
 define_contactgroups = {
+    "Admins", "Default Admin contact group"
 {% for grp in omdistro_contactgroups %}
     "{{netmon['groups'][grp]['name']}}" : "{{netmon['groups'][grp]['descr']}}",
 {% endfor %}

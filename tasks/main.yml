@@ -11,6 +11,12 @@
 - name: enable and start xinetd
   service: name=xinetd enabled=yes state=started
 
+- name: set omdistro version
+  command: omd setversion {{ omdistro_version }}
+  register: omdversion_result
+  failed_when: "'does not exist' in omdversion_result.stdout"
+  changed_when: "'update-alternatives' in omdversion_result.stdout"
+
 - name: create omdistro site
   command: omd create {{ omdistro_site }} creates=/opt/omd/sites/{{ omdistro_site }}
 
